@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState} from 'react';
+import React, { Component} from 'react';
 import Service from '../services/service';
 
 const link = new Service();
@@ -7,7 +7,6 @@ const promise = Promise.resolve(links);
 let result = [];
 promise.then((value) => {
   result = value;
-  /* console.log(result); */
 });
 
 const tableStyle = {
@@ -42,8 +41,8 @@ export default class Leaderboard extends Component {
 
   change(id) {
     const link = new Service();
-    const resultd = link.patchLink(id);
-    console.log(resultd);
+    const res = link.patchLink(id);
+    console.log(res);
   }
 
   render(){

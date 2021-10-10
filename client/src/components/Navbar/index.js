@@ -8,6 +8,9 @@ import {
   NavBtnLink,
 } from './navbarElement';
   
+function logout(){
+  sessionStorage.removeItem('token');
+}
 const Navbar = () => {
   return (
     <>
@@ -18,7 +21,7 @@ const Navbar = () => {
           <NavLink to='/leaderboard'>Leaderboard</NavLink>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/'>Sign In</NavBtnLink>
+          <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
         </NavBtn>
       </Nav>
     </>

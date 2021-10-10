@@ -17,13 +17,12 @@ export default class Home extends Component {
 
   handleSubmit(event) {
     const link = new Service();
-    const shortcode = link.postShortcode(this.state.url);
+    link.postShortcode(this.state.url);
     event.preventDefault();
   }
 
   render(){
-    return (
-        
+    return (      
       <div className="card text-center py-5">
         <div className="card-body py-auto row">
           <h3>This aplication consist to generate a random shortcode for each specific web site you enter in the form.</h3>

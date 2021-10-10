@@ -35,7 +35,7 @@ export default class Service {
 
   login = async (email, password) => {
     try {
-      const user = {email: email, password: password};
+      const user = {email, password};
       const response = await api.post('/users/login', user);
       return response.data;
     } catch (error) {     
