@@ -1,36 +1,49 @@
 import React, {Component} from 'react';
 import Service from '../services/service';
-
-export default class Home extends Component {
-  constructor(props) {
+  
+export default class SignIn extends Component {
+  constructor(props){
     super(props);
     this.state = { 
-      url: ''
+      email: '',
+      password: ''
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    
+    this.login = this.login.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({url: event.target.value});
-  }
+  setEmail = (event) => {
+      const email = {email: event.target.value };
+      this.setState({ email });
+  };
 
-  handleSubmit(event) {
+  setPassword = (event) => {
+      const password = {password: event.target.value };
+      this.setState({ password });
+  };
+
+  login() {
     const link = new Service();
-    const shortcode = link.postShortcode(this.state.url);
-    event.preventDefault();
-  }
+    const resultd = link.login(this.state.email, this.state.password);
+    console.log(resultd);
+  };
 
-  render(){
+  render() {
     return (
-      <div className="card text-center py-5">
-        <div className="card-body py-auto row">
-          <h3>This aplication consist to generate a random shortcode for each specific web site you enter in the form.</h3>
-          <form className="py-5 m-auto col-sm-6" onSubmit={this.handleSubmit}>
-            <label>Enter an https:// URL:</label>&nbsp;
-            <input className="my-2 form-control" type="url" name="url" id="url" value={this.state.url} onChange={this.handleChange} placeholder="https://example.com" pattern="https://.*" size="30" required/>&nbsp;
-            <input type="submit" className="btn btn-primary my-3  px-5" value="Generate"/>
-          </form>
+      <div className="card py-5">
+        <div className="card-body text-center py-5 row">
+            <h1 className="mb-5">Login Page</h1>
+            <form className="mx-auto col-sm-6">
+              <div className="mb-3">
+                  <input className="form-control" id="email" type="email" onChange={this.setEmail} placeholder="Email"></input>
+              </div>
+              <div className="mb-3">
+                <input className="form-control" id="password" type="password" name="password" onChange={this.setPassword} placeholder="Password"></input>
+              </div>
+              <div className="mb-3">
+                <button onClick={this.login} type="button" className="btn btn-primary px-5">Login</button>
+              </div>
+            </form>
         </div>
       </div>
     );

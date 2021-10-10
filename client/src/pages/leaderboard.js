@@ -7,7 +7,7 @@ const promise = Promise.resolve(links);
 let result = [];
 promise.then((value) => {
   result = value;
-  console.log(result);
+  /* console.log(result); */
 });
 
 const tableStyle = {
@@ -31,9 +31,20 @@ const thStyle = {
 };
 
 export default class Leaderboard extends Component {
-  state = { 
-    data: [{links}]
-  };
+  constructor(props){
+    super(props);
+    this.state = { 
+      data: [{result}]
+    };
+
+    this.change = this.change.bind(this);
+  }
+
+  change(id) {
+    const link = new Service();
+    const resultd = link.patchLink(id);
+    console.log(resultd);
+  }
 
   render(){
     return (
@@ -50,7 +61,7 @@ export default class Leaderboard extends Component {
                 </tr>
                 {result.map(({ _id, url, visits, shortcode }) => (
                   <tr key={_id}>
-                    <td style={tdStyle}><a href={url}>{url}</a></td>
+                    <td style={tdStyle}><a onClick={() => this.change(_id)} href={url}>{url}</a></td>
                     <td style={tdStyle}>{visits}</td>
                     <td style={tdStyle}>{shortcode}</td>
                   </tr>
