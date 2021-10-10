@@ -18,7 +18,6 @@ function getToken() {
 
 function App() {
   const token = getToken();
-  console.log("TOKEN:",token);
   if(token){
     return (
       <Router>
